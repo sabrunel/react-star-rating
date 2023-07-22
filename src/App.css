@@ -8,7 +8,15 @@
 
 body {
   font-family: 'Abril Fatface', cursive;
+}
 
+#root {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 button {
@@ -22,16 +30,25 @@ button:hover {
   transform: translateY(-8%);
 }
 
+.btn-off {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  pointer-events: none;
+}
+
+.btn-off:hover {
+  transform: none;
+}
+
 .ratings-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 
 span {
-  font-size: 48px;
+  font-size: 60px;
   transition: transform 200ms ease-out;
   -webkit-text-stroke: 2px black;
   color: transparent;

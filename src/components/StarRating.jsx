@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export default function StarRating({ title }) {
+export default function StarRating({ id, title, editRating }) {
     const [hoverStar, setHoverStar] = useState(0);
     const [rating, setRating] = useState(0);
     const [filledChunk, setFilledChunk] = useState(0);
 
+    // Manages the hovering / selection states and set color fill accordingly
     useEffect(() => {
         if (rating != 0 && rating > hoverStar) {
             setFilledChunk(rating * 20);
@@ -14,6 +15,11 @@ export default function StarRating({ title }) {
             setFilledChunk(0);
         }
          }, [hoverStar, rating])
+
+    // Manages updates to individual ratings in order to compute the total
+    useEffect(() => {
+        editRating(id, rating);
+    }, [rating])
 
     return (
         <div 
