@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import StarRating from './components/StarRating';
 import TotalRating from './components/TotalRating';
 import { useState, useEffect } from 'react';

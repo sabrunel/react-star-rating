@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
 
-export default function TotalRating({ title, averageRating}) {
-    const [filledChunk, setFilledChunk] = useState(0);
+export default function TotalRating({ title, averageRating }) {
+    const [backgroundFill, setBackgroundFill] = useState(0);
 
     useEffect(() => {
         if (averageRating != 0) {
-            setFilledChunk(averageRating * 20);
+            setBackgroundFill(averageRating * 20);
         } else {
-            setFilledChunk(0);
+            setBackgroundFill(0);
         }
         }, [averageRating])
 
     return (
         <div
+            className="total-rating"
             style={{
-                backgroundImage: `linear-gradient(90deg, gold 0%, gold ${filledChunk}%, white ${filledChunk}%)`,
+                backgroundImage: `linear-gradient(90deg, gold 0%, gold ${backgroundFill}%, white ${backgroundFill}%)`,
                 backgroundClip: "text",
                 WebkitbackgroundClip: "text"
         }}>

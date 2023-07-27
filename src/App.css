@@ -11,7 +11,7 @@ body {
 }
 
 #root {
-  padding-top: 5rem;
+  padding-top: 8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,15 +19,25 @@ body {
   gap: 2rem;
 }
 
+h2 {
+  font-size: 2.5em;
+}
+
 button {
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+  transition: transform 300ms ease;
 }
 
 button:hover {
   transform: translateY(-8%);
+}
+
+button:active {
+  transform: scale(1.2);
+  z-index: 1;
 }
 
 .btn-off {
@@ -48,8 +58,16 @@ button:hover {
 }
 
 span {
-  font-size: 60px;
-  transition: transform 200ms ease-out;
-  -webkit-text-stroke: 2px black;
+  font-size: 80px;
+  -webkit-text-stroke: 2.25px black;
   color: transparent;
+}
+
+.total-rating {
+  animation: fadeIn 500ms;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }

@@ -3,16 +3,19 @@ import { useState, useEffect } from 'react';
 export default function StarRating({ id, title, editRating }) {
     const [hoverStar, setHoverStar] = useState(0);
     const [rating, setRating] = useState(0);
-    const [filledChunk, setFilledChunk] = useState(0);
+    const [backgroundFill, setBackgroundFill] = useState({
+        width: 0,
+        opacity: 0
+    })
 
     // Manages the hovering / selection states and set color fill accordingly
     useEffect(() => {
-        if (rating != 0 && rating > hoverStar) {
-            setFilledChunk(rating * 20);
+        if (rating != 0 && rating >= hoverStar) {
+            paintStars(rating * 20, 1);
         } else if (hoverStar != 0) {
-            setFilledChunk(hoverStar * 20);
+            paintStars(hoverStar * 20, 0.25);
         } else {
-            setFilledChunk(0);
+            paintStars(0, 0);
         }
          }, [hoverStar, rating])
 
@@ -21,10 +24,20 @@ export default function StarRating({ id, title, editRating }) {
         editRating(id, rating);
     }, [rating])
 
+    function paintStars(width, opacity) {
+        setBackgroundFill((params) => {
+            return {
+                ...params,
+                width: width,
+                opacity: opacity
+            }
+        })
+    }
+
     return (
         <div 
             style={{
-                backgroundImage: `linear-gradient(90deg, gold 0%, gold ${filledChunk}%, white ${filledChunk}%)`,
+                backgroundImage: `linear-gradient(90deg, rgba(255,215,0,${backgroundFill.opacity}) 0%, rgba(255,215,0,${backgroundFill.opacity}) ${backgroundFill.width - 20}%, rgba(255,215,0,1) ${backgroundFill.width}%, white ${backgroundFill.width}%)`,
                 backgroundClip: "text",
                 WebkitbackgroundClip: "text"
         }}>
